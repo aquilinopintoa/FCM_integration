@@ -1,0 +1,46 @@
+
+version: "3.3"
+
+services:
+  # CONFIG DEPLOY SERVICE TO WEB CLIENT
+  client_web:
+    build:
+      context: ./deploy/
+      dockerfile: client_web.dockerfile
+    command: bash -c "npm install && npm start" 
+    container_name: client_web
+    ports:
+    - 1324:1324
+    volumes:
+      - ./src/client:/sport_radar_integration/client_web
+
+  # CONFIG DEPLOY SERVICE TO API
+  api:
+    build:
+      context: ./deploy/
+      dockerfile: api.dockerfile
+    command: bash -c "chmod +x /go/src/sport_radar_integration/watch_server && /go/src/sport_radar_integration/watch_server"
+    container_name: api
+    ports:
+    - 1323:1323
+    volumes:
+      - ./src/api:/go/src/sport_radar_integration/
+
+  # CONFIG DEPLOY SERVICE POSTGRESQL
+  postgres:
+    image: postgres:9.6.4
+    restart: always
+    container_name: postgres
+    ports:
+    - 5432:5432
+    environment:
+      POSTGRES_DB: sport_radar
+      POSTGRES_PASSWORD: sport_radar
+      POSTGRES_USER: sport_radar
+
+  # CONFIG DEPLOY SERVICE REDIS (STORE SESSIONS)
+  redis:
+    container_name: redis
+    image: redis:alpine
+
+  # CONFIG DEPLOY MONGO (STORE SPORT-RADAR RAW)

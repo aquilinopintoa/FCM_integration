@@ -1,0 +1,31 @@
+#!/bin/sh
+
+echo "###### RUN SERVER #####"
+
+glide install --force
+mv -f vendor/* /usr/local/go/src 
+rm -r vendor
+go run main.go &
+
+# SERVERUP=1
+
+inotifywait -mr --timefmt '%d/%m/%y %H:%M' --format '%T %w %f' \
+-e modify -e create -e delete ./server/* | while read date time dir file; do
+      pkill main
+      KILL=$?
+      if [ $KILL -eq 0 ] || [ $SERVERUP -eq 0 ]
+        then  
+          echo "###### SERVER CHANGED #####"
+          echo "<----- SERVER OFF ----->"
+          go build -o ./build/main ./main.go
+          BUILD=$?
+          if [ $BUILD -eq 0 ]
+            then
+              echo "<----- STARTING SERVER ----->"
+              SERVERUP=1
+              go run  main.go &
+            else
+              SERVERUP=0
+          fi
+      fi
+done
