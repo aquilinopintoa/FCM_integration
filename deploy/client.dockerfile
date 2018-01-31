@@ -1,6 +1,6 @@
 FROM node:8.9.0
 
-WORKDIR /sport_radar_integration/client_web
+WORKDIR /fcm_integration/client
 COPY . .
 
 RUN npm install -g webpack webpack-dev-server

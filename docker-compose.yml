@@ -3,44 +3,37 @@ version: "3.3"
 
 services:
   # CONFIG DEPLOY SERVICE TO WEB CLIENT
-  client_web:
+  client:
     build:
       context: ./deploy/
-      dockerfile: client_web.dockerfile
+      dockerfile: client.dockerfile
     command: bash -c "npm install && npm start" 
-    container_name: client_web
+    container_name: client_fcm_integration
     ports:
     - 1324:1324
     volumes:
-      - ./src/client:/sport_radar_integration/client_web
+      - ./src/client:/fcm_integration/client
 
   # CONFIG DEPLOY SERVICE TO API
   api:
     build:
       context: ./deploy/
       dockerfile: api.dockerfile
-    command: bash -c "chmod +x /go/src/sport_radar_integration/watch_server && /go/src/sport_radar_integration/watch_server"
-    container_name: api
+    command: bash -c "chmod +x /go/src/fcm_integration/watch_server && /go/src/fcm_integration/watch_server"
+    container_name: api_fcm_integration
     ports:
     - 1323:1323
     volumes:
-      - ./src/api:/go/src/sport_radar_integration/
+      - ./src/api:/go/src/fcm_integration/
 
   # CONFIG DEPLOY SERVICE POSTGRESQL
   postgres:
     image: postgres:9.6.4
     restart: always
-    container_name: postgres
+    container_name: postgres_fcm_integration
     ports:
     - 5432:5432
     environment:
-      POSTGRES_DB: sport_radar
-      POSTGRES_PASSWORD: sport_radar
-      POSTGRES_USER: sport_radar
-
-  # CONFIG DEPLOY SERVICE REDIS (STORE SESSIONS)
-  redis:
-    container_name: redis
-    image: redis:alpine
-
-  # CONFIG DEPLOY MONGO (STORE SPORT-RADAR RAW)
+      POSTGRES_DB: fcm_integration
+      POSTGRES_PASSWORD: fcm_integration
+      POSTGRES_USER: fcm_integration

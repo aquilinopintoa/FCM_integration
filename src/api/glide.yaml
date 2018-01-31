@@ -1,4 +1,4 @@
-package: sport_radar_integration
+package: fcm_integration
 import:
 - package: github.com/labstack/echo
   version: 3.2.6

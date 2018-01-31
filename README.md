@@ -1,10 +1,9 @@
 # README #
 
-Plataforma de calculo de puntaje partiendo de la informacion que suministra la plataforma de Sport Radar.
+
 
 ### What is this repository for? ###
 
-* Calculo de Puntaje, consumiendo data de sport radar
 * 0.1
 
 ### How do I get set up? ###

@@ -1,7 +1,7 @@
 #!/bin/sh
 
 echo "###### RUN SERVER #####"
-
+ls
 glide install --force
 mv -f vendor/* /usr/local/go/src 
 rm -r vendor

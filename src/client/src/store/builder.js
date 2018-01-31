@@ -17,8 +17,8 @@ export default function({ initialState = {}, reducer, dependencies }) {
           applyMiddleware(...middlewares),
           window.__REDUX_DEVTOOLS_EXTENSION__ &&
             window.__REDUX_DEVTOOLS_EXTENSION__({
-              name: 'SportRadar',
-              instanceId: 'SportRadar',
+              name: 'FCM',
+              instanceId: 'FCM',
             })
         )
       )
