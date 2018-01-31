@@ -1,5 +1,5 @@
-hash: 3724a71dd521126ea2285786dc5d2e23b46517eedd29472f447eab42a0c3ae66
-updated: 2018-01-11T08:08:26.011492283-04:00
+hash: 34f0a06cc91ee3125c94c23ead43dfbe08f08e8414e8efce28204a400a958d30
+updated: 2018-01-31T09:06:51.356673532-04:00
 imports:
 - name: github.com/jinzhu/now
   version: d939ba741945c047cac69c329c5fb0d6b4a06520
@@ -13,9 +13,11 @@ imports:
   - color
   - log
 - name: github.com/mattn/go-colorable
-  version: 586e6dcca296d085100876beb6dbf02287a247f7
+  version: 6cc8b475d4682021d75d2cbe2bc481bec4ce98e5
 - name: github.com/mattn/go-isatty
   version: 6ca4dbf54d38eea1a992b3c722a76a5d1c4cb25c
+- name: github.com/NaySoftware/go-fcm
+  version: 2a6c4f48b49f0d5dbfe621589da4c5405157d7c9
 - name: github.com/stripe/stripe-go
   version: 4215bb4be39f20597ef7733989e9096869ad830c
 - name: github.com/valyala/bytebufferpool
@@ -23,12 +25,12 @@ imports:
 - name: github.com/valyala/fasttemplate
   version: dcecefd839c4193db0d35b88ec65b4c12d360ab0
 - name: golang.org/x/crypto
-  version: 5f55bce93ad2c89f411e009659bb1fd83da36e7b
+  version: 1875d0a70c90e57f11972aefd42276df65e895b9
   subpackages:
   - acme
   - acme/autocert
 - name: golang.org/x/sys
-  version: 810d7000345868fc619eb81f46307107118f4ae1
+  version: 3dbebcf8efb6a5011a60c2b4591c1022a759af8a
   subpackages:
   - unix
 testImports: []

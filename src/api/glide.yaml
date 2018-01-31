@@ -7,3 +7,4 @@ import:
 - package: github.com/stripe/stripe-go
   version: v28.10.0
 - package: github.com/jinzhu/now
+- package: github.com/NaySoftware/go-fcm

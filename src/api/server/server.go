@@ -7,8 +7,15 @@ import (
 	"io/ioutil"
 	"net/http"
 
+	"github.com/NaySoftware/go-fcm"
 	"github.com/labstack/echo"
 )
+
+const (
+	serverKey = "YOUR-KEY"
+)
+
+const c := fcm.NewFcmClient(serverKey)
 
 type Template struct {
 	templates *template.Template
@@ -64,6 +71,28 @@ func Start() {
 		fmt.Println("test")
 		return c.String(http.StatusOK, "Hello, goland World!")
 	})
+
+	Instance.POST("/api/send", func(c echo.Context) error {
+		// start go-fcm
+		data := map[string]string{
+			"msg": "Hello World1",
+			"sum": "Happy Day",
+		}
+
+		c.NewFcmMsgTo(topic, data)
+
+		status, err := c.Send()
+
+		if err == nil {
+			status.PrintResults()
+		} else {
+			fmt.Println(err)
+		}
+		
+		return c.String(http.StatusOK, "Hello, goland World!")
+	})
+
+	
 
 	// config route app web
 	Instance.GET("/", Index)
